@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 150 20% 4.5%;
+    --foreground: 140 25% 92%;
+
+    --card: 156 18% 7%;
+    --card-foreground: 140 25% 92%;
+
+    --popover: 156 18% 7%;
+    --popover-foreground: 140 25% 92%;
+
+    --primary: 145 64% 54%;
+    --primary-foreground: 150 30% 6%;
+
+    --secondary: 152 14% 11%;
+    --secondary-foreground: 140 25% 92%;
+
+    --muted: 152 14% 11%;
+    --muted-foreground: 150 15% 50%;
+
+    --accent: 36 90% 55%;
+    --accent-foreground: 150 30% 6%;
+
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 140 25% 92%;
+
+    --border: 150 18% 16%;
+    --input: 150 18% 16%;
+    --ring: 145 64% 54%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 150 20% 4.5%;
+    --sidebar-foreground: 140 25% 92%;
+    --sidebar-primary: 145 64% 54%;
+    --sidebar-primary-foreground: 150 30% 6%;
+    --sidebar-accent: 152 14% 11%;
+    --sidebar-accent-foreground: 140 25% 92%;
+    --sidebar-border: 150 18% 16%;
+    --sidebar-ring: 145 64% 54%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Syne', sans-serif;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Syne', sans-serif;
+  }
+
+  .font-body {
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)) 30%, hsl(var(--accent)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-glow {
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 0%, hsl(var(--primary) / 0.10) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 80% 80%, hsl(var(--accent) / 0.05) 0%, transparent 60%);
+  }
+
+  .hero-grid-bg {
+    background-image:
+      linear-gradient(hsl(var(--border)) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0.35;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black, transparent);
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black, transparent);
+  }
+
+  .gradient-bar {
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)));
+  }
+
+  .glow-shadow {
+    box-shadow: 0 0 40px hsl(var(--primary) / 0.2);
+  }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.6); }
+}
+
+@keyframes countDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.65s ease both;
+}
+
+.animate-fade-up-1 { animation: fadeUp 0.65s 0.08s ease both; }
+.animate-fade-up-2 { animation: fadeUp 0.65s 0.16s ease both; }
+.animate-fade-up-3 { animation: fadeUp 0.65s 0.24s ease both; }
+.animate-fade-up-4 { animation: fadeUp 0.65s 0.32s ease both; }
+.animate-fade-up-5 { animation: fadeUp 0.65s 0.40s ease both; }
+.animate-fade-up-6 { animation: fadeUp 0.65s 0.48s ease both; }
+
+.animate-pulse-dot {
+  animation: pulse-dot 1.5s infinite;
+}
