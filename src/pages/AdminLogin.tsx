@@ -17,42 +17,12 @@ const AdminLogin = () => {
 
     try {
       if (isSignUp) {
-        const { data, error } = await supabase.auth.signUp({ email, password });
+        const { error } = await supabase.auth.signUp({ email, password });
         if (error) throw error;
-        if (!data.user) throw new Error("Signup failed");
-
-        // Check if this user was auto-assigned admin (first user)
-        const { data: roles } = await supabase
-          .from("user_roles" as any)
-          .select("role")
-          .eq("user_id", data.user.id)
-          .eq("role", "admin");
-
-        if (roles && roles.length > 0) {
-          navigate("/admin");
-        } else {
-          await supabase.auth.signOut();
-          setError("Account created! Ask an existing admin to grant you the admin role.");
-          setIsSignUp(false);
-        }
+        navigate("/admin");
       } else {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
-
-        const { data: { user } } = await supabase.auth.getUser();
-        if (!user) throw new Error("No user found");
-
-        const { data: roles } = await supabase
-          .from("user_roles" as any)
-          .select("role")
-          .eq("user_id", user.id)
-          .eq("role", "admin");
-
-        if (!roles || roles.length === 0) {
-          await supabase.auth.signOut();
-          throw new Error("You don't have admin access. Contact an administrator.");
-        }
-
         navigate("/admin");
       }
     } catch (err: any) {

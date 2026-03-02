@@ -28,17 +28,7 @@ const Admin = () => {
         return;
       }
 
-      // Verify admin role
-      const { data: roles } = await supabase
-        .from("user_roles" as any)
-        .select("role")
-        .eq("user_id", session.user.id)
-        .eq("role", "admin");
 
-      if (!roles || roles.length === 0) {
-        navigate("/admin/login");
-        return;
-      }
 
       const { data, error } = await supabase
         .from("waitlist_submissions" as any)
